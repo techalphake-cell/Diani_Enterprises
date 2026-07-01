@@ -1,0 +1,111 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--forest);
+  padding: var(--space-3);
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-links {
+  display: flex;
+  justify-content: space-evenly;
+  gap: var(--space-3);
+  align-items: center;
+}
+.nav-links a {
+  color: var(--white);
+}
+.nav-links a:hover {
+  color: var(--amber);
+}
+.nav-toggle {
+  display: none;
+}
+.logo {
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+}
+.cta-button {
+  background-color: var(--amber);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--forest);
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+}
+.cta-button:hover {
+  background-color: var(--slate);
+  color: var(--white);
+}
+/*-hero section-*/
+
+.hero {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--chalk);
+  padding: var(--space-4);
+  min-height: 90vh;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+}
+.hero-content span {
+  color: var(--amber);
+  font-size: var(--text-sm);
+  letter-spacing: 0.15em;
+}
+.hero-content h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  color: var(--forest);
+  line-height: 1.2;
+}
+.hero-content p {
+  font-size: var(--text-lg);
+  color: var(--slate);
+}
+.hero-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+.btn-primary {
+  background-color: var(--forest);
+  color: var(--white);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+  border: 1px solid var(--forest);
+}
+.btn-primary:hover {
+  background-color: transparent;
+  border: 1px solid var(--forest);
+  color: var(--slate);
+}
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--forest);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+.btn-secondary:hover {
+  background-color: var(--forest);
+  color: var(--white);
+}
+.hero-image {
+  flex: 1;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
