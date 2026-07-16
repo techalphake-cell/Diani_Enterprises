@@ -702,6 +702,17 @@ color: var(--slate);
   flex-wrap: wrap;
   gap: var(--space-2);
 }
+.contact-grid {
+  grid-template-columns: 1fr;
+}
+
+.contact-info h2,
+.contact-form h2 {
+  font-size: var(--text-2xl);
+}
+
+
+
 }
 
 
