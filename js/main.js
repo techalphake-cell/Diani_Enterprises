@@ -60,9 +60,17 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="product-category">${product.category}</span>
             <h3>${product.name}</h3>
             <p>${product.description}</p>
-            <button class="btn-primary enquire-btn" data-product="${product.name} - ${product.description}">
-              Enquire Now
-            </button>
+           <div class="card-actions">
+             <button class="btn-primary enquire-btn" data-product="${product.name} - ${product.description}">
+           Enquire 
+             </button>
+            <a 
+             href="https://wa.me/254759186527?text=Hello, I would like to order: ${product.name} - ${product.description}" 
+             class="btn-whatsapp"
+             target="_blank">
+              Order on WhatsApp
+           </a>
+        </div>
           </div>
         `;
 

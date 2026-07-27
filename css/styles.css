@@ -656,6 +656,36 @@ textarea:focus {
   transform: scale(1.1);
 }
 
+/*-card actions in products-*/
+.card-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+/*
+.card-actions .btn-primary,
+.card-actions .btn-whatsapp {
+  flex: 1;
+  text-align: center;
+  font-size: var(--text-sm);
+  padding: var(--space-2);
+}*/
+
+.btn-whatsapp {
+  background-color: #25d366;
+  color: var(--white);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: var(--text-xsm);
+  transition: var(--transition);
+  border: 1px solid #25d366;
+}
+.btn-whatsapp:hover {
+  background-color: transparent;
+  color: #25d366;
+}
+
 /* Intermediate (1024px and below) */
 @media (max-width: 1024px) {
   .products-grid {
