@@ -91,10 +91,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Render all products on page load
-  renderProducts();
+  const filterButtons = document.querySelectorAll(".filter-bar button");
+  const params = new URLSearchParams(window.location.search);
+  const urlCategory = params.get("category");
+
+  if (urlCategory) {
+    renderProducts(urlCategory);
+    filterButtons.forEach((btn) => {
+      if (btn.dataset.category === urlCategory) {
+        btn.classList.add("active");
+      }
+    });
+  } else {
+    renderProducts();
+  }
 
   // Filter buttons
-  const filterButtons = document.querySelectorAll(".filter-bar button");
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {

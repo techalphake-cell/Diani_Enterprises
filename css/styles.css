@@ -299,10 +299,13 @@ nav {
 .footer-links a:hover {
   color: var(--amber);
 }
-.contact-info p {
+.contact-infom p {
   color: var(--white);
   margin-bottom: var(--space-3);
   line-height: 1.2;
+}
+.contact-infom p:hover {
+  color: var(--amber);
 }
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
