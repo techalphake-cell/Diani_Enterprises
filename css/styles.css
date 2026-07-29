@@ -352,13 +352,15 @@ nav {
 }
 .modal {
   background-color: var(--white);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   padding: var(--space-3);
   max-width: 500px;
   width: 90%;
   box-shadow: var(--shadow-md);
   transform: translateY(-20px);
   transition: transform 0.2s ease;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 .modal-header {
   display: flex;
@@ -403,6 +405,24 @@ textarea:focus {
 textarea {
   min-height: 100px;
   resize: vertical;
+}
+
+.whatsapp-alt {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--slate);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--mist);
+}
+
+.whatsapp-alt a {
+  color: #25d366;
+  font-weight: 600;
+}
+
+.whatsapp-alt a:hover {
+  text-decoration: underline;
 }
 /*----products page */
 /*-banner section-*/
@@ -506,6 +526,16 @@ textarea {
 }
 .product-card.hidden {
   display: none;
+}
+/*- catalogue download button-*/
+.catalogue-download {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+.catalogue-download p {
+  color: var(--slate);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-2);
 }
 
 /*contact page*/
