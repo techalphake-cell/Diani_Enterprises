@@ -47,7 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
     productsGrid.innerHTML = "";
 
     products.forEach((product) => {
-      if (filter === "all" || product.category === filter) {
+      const isMatch =
+        filter === "all" ||
+        product.category === filter ||
+        (filter === "paint" && product.category.startsWith("paint-"));
+
+      if (isMatch) {
         const card = document.createElement("div");
         card.classList.add("product-card");
         card.dataset.category = product.category;
@@ -94,6 +99,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterButtons = document.querySelectorAll(".filter-bar button");
   const params = new URLSearchParams(window.location.search);
   const urlCategory = params.get("category");
+  const categoryLabels = {
+    tools: "Tools",
+    building: "Building Materials",
+    plumbing: "Plumbing",
+    electrical: "Electrical",
+    "sanitary-ware": "Sanitary Ware",
+    "hardware-general": "Hardware",
+    "paint-crown": "Crown Paint",
+    "paint-basco": "Basco Paint",
+    "paint-plascon": "Plascon Paint",
+  };
 
   if (urlCategory) {
     renderProducts(urlCategory);
