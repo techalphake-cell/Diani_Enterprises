@@ -1,14 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Hamburger menu
+  // ===== HAMBURGER MENU =====
   const navToggle = document.querySelector(".nav-toggle");
   const navLinks = document.querySelector(".nav-links");
 
-  navToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("nav-open");
-    navToggle.classList.toggle("active");
-  });
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("nav-open");
+      navToggle.classList.toggle("active");
+    });
+  }
 
-  // Modal selectors
+  // ===== MODAL =====
   const openOverlay = document.querySelector(".cta-button");
   const overlay = document.querySelector(".modal-overlay");
   const modal = document.querySelector("#quote-modal");
@@ -38,67 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Card generation
+  // ===== PRODUCTS RENDERING =====
   const productsGrid = document.querySelector(".products-grid");
 
-  function renderProducts(filter = "all") {
-    if (!productsGrid) return;
-
-    productsGrid.innerHTML = "";
-
-    products.forEach((product) => {
-      const isMatch =
-        filter === "all" ||
-        product.category === filter ||
-        (filter === "paint" && product.category.startsWith("paint-"));
-
-      if (isMatch) {
-        const card = document.createElement("div");
-        card.classList.add("product-card");
-        card.dataset.category = product.category;
-
-        card.innerHTML = `
-          <div class="product-image">
-            <img src="" alt="${product.alt}">
-          </div>
-          <div class="product-info">
-            <span class="product-category">${product.category}</span>
-            <h3>${product.name}</h3>
-            <p>${product.description}</p>
-           <div class="card-actions">
-             <button class="btn-primary enquire-btn" data-product="${product.name} - ${product.description}">
-           Enquire 
-             </button>
-            <a 
-             href="https://wa.me/254735244889?text=Hello, I would like to order: ${product.name} - ${product.description}" 
-             class="btn-whatsapp"
-             target="_blank">
-              Order on WhatsApp
-           </a>
-        </div>
-          </div>
-        `;
-
-        productsGrid.appendChild(card);
-      }
-    });
-
-    // Attach enquire button listeners after cards are rendered
-    const enquireBtns = document.querySelectorAll(".enquire-btn");
-    enquireBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        if (inquiry) {
-          inquiry.value = `Hello, I would like to enquire about: ${btn.dataset.product}`;
-        }
-        if (overlay) overlay.classList.add("active");
-      });
-    });
-  }
-
-  // Render all products on page load
-  const filterButtons = document.querySelectorAll(".filter-bar button");
-  const params = new URLSearchParams(window.location.search);
-  const urlCategory = params.get("category");
   const categoryLabels = {
     tools: "Tools",
     building: "Building Materials",
@@ -111,6 +55,99 @@ document.addEventListener("DOMContentLoaded", () => {
     "paint-plascon": "Plascon Paint",
   };
 
+  function renderProducts(filter = "all", paintType = "all") {
+    if (!productsGrid) return;
+
+    productsGrid.innerHTML = "";
+
+    products.forEach((product) => {
+      const categoryMatch =
+        filter === "all" ||
+        product.category === filter ||
+        (filter === "paint" && product.category.startsWith("paint-"));
+
+      const typeMatch =
+        filter !== "paint" || paintType === "all" || product.type === paintType;
+
+      if (categoryMatch && typeMatch) {
+        const card = document.createElement("div");
+        card.classList.add("product-card");
+        card.dataset.category = product.category;
+
+        card.innerHTML = `
+          <div class="product-image">
+            <img src="" alt="${product.alt}">
+          </div>
+          <div class="product-info">
+            <span class="product-category">${categoryLabels[product.category] || product.category}</span>
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <div class="card-actions">
+              <button class="btn-primary enquire-btn" data-product="${product.name} - ${product.description}">
+                Enquire Now
+              </button>
+              <a href="https://wa.me/254735244889?text=Hello, I would like to order: ${product.name} - ${product.description}" class="btn-whatsapp" target="_blank">
+                Order on WhatsApp
+              </a>
+            </div>
+          </div>
+        `;
+
+        productsGrid.appendChild(card);
+      }
+    });
+
+    // Re-attach enquire button listeners after every render
+    const enquireBtns = document.querySelectorAll(".enquire-btn");
+    enquireBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (inquiry) {
+          inquiry.value = `Hello, I would like to enquire about: ${btn.dataset.product}`;
+        }
+        if (overlay) overlay.classList.add("active");
+      });
+    });
+  }
+
+  // ===== FILTER BUTTONS =====
+  const filterButtons = document.querySelectorAll(".filter-bar button");
+  const paintSubfilter = document.querySelector("#paint-subfilter");
+  const paintSubButtons = document.querySelectorAll(".paint-subfilter button");
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      const category = button.dataset.category;
+
+      if (category === "paint") {
+        if (paintSubfilter) paintSubfilter.classList.add("visible");
+        paintSubButtons.forEach((btn) => btn.classList.remove("active"));
+        if (paintSubButtons[0]) paintSubButtons[0].classList.add("active");
+        renderProducts("paint", "all");
+      } else {
+        if (paintSubfilter) paintSubfilter.classList.remove("visible");
+        renderProducts(category);
+      }
+    });
+  });
+
+  // ===== PAINT SUB-FILTER BUTTONS =====
+  if (paintSubButtons.length > 0) {
+    paintSubButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        paintSubButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderProducts("paint", btn.dataset.type);
+      });
+    });
+  }
+
+  // ===== CHECK URL FOR CATEGORY PARAMETER =====
+  const params = new URLSearchParams(window.location.search);
+  const urlCategory = params.get("category");
+
   if (urlCategory) {
     renderProducts(urlCategory);
     filterButtons.forEach((btn) => {
@@ -118,17 +155,10 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.classList.add("active");
       }
     });
+    if (urlCategory === "paint" && paintSubfilter) {
+      paintSubfilter.classList.add("visible");
+    }
   } else {
     renderProducts();
   }
-
-  // Filter buttons
-
-  filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      filterButtons.forEach((btn) => btn.classList.remove("active"));
-      button.classList.add("active");
-      renderProducts(button.dataset.category);
-    });
-  });
 });
