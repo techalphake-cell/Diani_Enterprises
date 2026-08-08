@@ -573,6 +573,41 @@ textarea {
   margin-bottom: var(--space-2);
 }
 
+.size-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.size-group label {
+  font-size: var(--text-sm);
+  color: var(--forest);
+  font-weight: 600;
+}
+
+.size-select {
+  width: auto;
+  min-width: 80px;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--mist);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  color: var(--slate);
+  cursor: pointer;
+}
+
+.size-select:focus {
+  outline: none;
+  border-color: var(--forest);
+}
+
+.single-size {
+  font-size: var(--text-sm);
+  color: var(--slate);
+  font-weight: 600;
+}
+
 /*contact page*/
 
 .contact-section {

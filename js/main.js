@@ -74,6 +74,22 @@ document.addEventListener("DOMContentLoaded", () => {
         card.classList.add("product-card");
         card.dataset.category = product.category;
 
+        // Build the size control — dropdown for multiple sizes, plain text for one, nothing for none
+        let sizeHTML = "";
+        if (product.sizes && product.sizes.length > 1) {
+          const options = product.sizes
+            .map((size) => `<option value="${size}">${size}</option>`)
+            .join("");
+          sizeHTML = `
+            <div class="size-group">
+              <label>Size:</label>
+              <select class="size-select">${options}</select>
+            </div>
+          `;
+        } else if (product.sizes && product.sizes.length === 1) {
+          sizeHTML = `<p class="single-size">Size: ${product.sizes[0]}</p>`;
+        }
+
         card.innerHTML = `
           <div class="product-image">
             <img src="" alt="${product.alt}">
@@ -82,30 +98,47 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="product-category">${categoryLabels[product.category] || product.category}</span>
             <h3>${product.name}</h3>
             <p>${product.description}</p>
+            ${sizeHTML}
             <div class="card-actions">
-              <button class="btn-primary enquire-btn" data-product="${product.name} - ${product.description}">
-                Enquire Now
-              </button>
-              <a href="https://wa.me/254735244889?text=Hello, I would like to order: ${product.name} - ${product.description}" class="btn-whatsapp" target="_blank">
-                Order on WhatsApp
-              </a>
+              <button class="btn-primary enquire-btn">Enquire Now</button>
+              <a class="btn-whatsapp" target="_blank">Order on WhatsApp</a>
             </div>
           </div>
         `;
 
+        // Wire up this card's buttons individually, since they need
+        // to read THIS card's size dropdown at click time
+        const enquireBtn = card.querySelector(".enquire-btn");
+        const whatsappBtn = card.querySelector(".btn-whatsapp");
+        const sizeSelect = card.querySelector(".size-select");
+
+        function getMessage() {
+          let text = `${product.name} - ${product.description}`;
+          if (sizeSelect) {
+            text += ` (${sizeSelect.value})`;
+          } else if (product.sizes && product.sizes.length === 1) {
+            text += ` (${product.sizes[0]})`;
+          }
+          return text;
+        }
+
+        enquireBtn.addEventListener("click", () => {
+          if (inquiry) {
+            inquiry.value = `Hello, I would like to enquire about: ${getMessage()}`;
+          }
+          if (overlay) overlay.classList.add("active");
+        });
+
+        whatsappBtn.addEventListener("click", (event) => {
+          event.preventDefault();
+          const message = encodeURIComponent(
+            `Hello, I would like to order: ${getMessage()}`,
+          );
+          window.open(`https://wa.me/254735244889?text=${message}`, "_blank");
+        });
+
         productsGrid.appendChild(card);
       }
-    });
-
-    // Re-attach enquire button listeners after every render
-    const enquireBtns = document.querySelectorAll(".enquire-btn");
-    enquireBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        if (inquiry) {
-          inquiry.value = `Hello, I would like to enquire about: ${btn.dataset.product}`;
-        }
-        if (overlay) overlay.classList.add("active");
-      });
     });
   }
 
