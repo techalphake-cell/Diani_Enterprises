@@ -55,6 +55,19 @@ document.addEventListener("DOMContentLoaded", () => {
     "paint-plascon": "Plascon Paint",
   };
 
+  const categoryBrandsList = {
+    tools: [
+      "Bosch",
+      "Ingco",
+      "Total",
+      "Tolsen",
+      "Raider",
+      "Shoshona",
+      "Makita",
+    ],
+    // add more here as you go — e.g. plumbing: ["...", "..."], electrical: ["...", "..."]
+  };
+
   function renderProducts(filter = "all", paintType = "all") {
     if (!productsGrid) return;
 
@@ -98,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="product-category">${categoryLabels[product.category] || product.category}</span>
             <h3>${product.name}</h3>
             <p>${product.description}</p>
+           
             ${sizeHTML}
             <div class="card-actions">
               <button class="btn-primary enquire-btn">Enquire Now</button>
@@ -141,6 +155,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+  const brandsBanner = document.querySelector("#brands-banner");
+  const brandsTrack = document.querySelector("#brands-track");
+
+  function updateBrandsBanner(category) {
+    if (!brandsBanner || !brandsTrack) return;
+
+    const brands = categoryBrandsList[category];
+
+    if (!brands) {
+      brandsBanner.classList.remove("visible");
+      return;
+    }
+
+    const items = brands
+      .map((b) => `<span class="brand-item">${b}</span>`)
+      .join("");
+    brandsTrack.innerHTML = items + items; // duplicated for the seamless scroll
+    brandsBanner.classList.add("visible");
+  }
 
   // ===== FILTER BUTTONS =====
   const filterButtons = document.querySelectorAll(".filter-bar button");
@@ -153,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
       button.classList.add("active");
 
       const category = button.dataset.category;
+      updateBrandsBanner(category);
 
       if (category === "paint") {
         if (paintSubfilter) paintSubfilter.classList.add("visible");
@@ -183,6 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (urlCategory) {
     renderProducts(urlCategory);
+    updateBrandsBanner(urlCategory);
     filterButtons.forEach((btn) => {
       if (btn.dataset.category === urlCategory) {
         btn.classList.add("active");

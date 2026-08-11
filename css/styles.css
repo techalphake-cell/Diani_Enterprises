@@ -607,6 +607,54 @@ textarea {
   color: var(--slate);
   font-weight: 600;
 }
+.brands-banner {
+  display: none;
+  overflow: hidden;
+  background-color: var(--mist);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) 0;
+  margin-bottom: var(--space-5);
+}
+
+.brands-banner.visible {
+  display: block;
+}
+
+.brands-track {
+  display: flex;
+  width: max-content;
+  gap: var(--space-6);
+  animation: scroll-brands 15s linear infinite;
+}
+
+.brands-banner:hover .brands-track {
+  animation-play-state: paused;
+}
+
+.brand-item {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--forest);
+  white-space: nowrap;
+  padding: 0 var(--space-4);
+}
+
+@keyframes scroll-brands {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.brand-header {
+  text-align: center;
+  font-size: var(--text-lg);
+  font-family: var(--font-display);
+  color: var(--forest);
+  padding: var(--space-3);
+}
 
 /*contact page*/
 
