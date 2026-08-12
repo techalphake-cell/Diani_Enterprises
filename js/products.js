@@ -217,11 +217,33 @@ const products = [
 
   // ===== BUILDING MATERIALS =====
   {
+    name: "Cement",
+    category: "building",
+    description: "Strong Building Cement",
+    sizes: ["50kg Bamburi", "50kg Rhino", "50kg Mombasa"],
+    alt: "Cement image",
+  },
+  {
+    name: " White Cement",
+    category: "building",
+    description: "Cleopatra White cement",
+    sizes: ["50kg", "40kg"],
+    alt: " White Cement image",
+  },
+
+  {
     name: "Square Tube",
     category: "building",
-    description: "40x40x2mm steel",
+    description: "Hollow Steel Tube",
     sizes: ["20X20MM", "30X30MM", "40 X 40MM", "50 X 50MM"],
     alt: "Square tube image",
+  },
+  {
+    name: "Galvanised Pipes",
+    category: "building",
+    description: "Hollow GI Pipes",
+    sizes: ["1/2 Inch", "3/4 Inch", "1 Inch", "2 Inch"],
+    alt: "GI pipe image",
   },
   {
     name: "Steel Bar",
