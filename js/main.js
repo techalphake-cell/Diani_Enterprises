@@ -67,6 +67,14 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
     paint: ["Crown", "Duracoat", "Basco", "Plascon"],
     building: ["Doshi", "Tarmal ", "Bamburi", "Duracoat", "Dumuzaz", "Nyumba"],
+    plumbing: [
+      "Plumber",
+      "Miran",
+      "Lirlee",
+      "Pegler",
+      "Pedrollo",
+      "Davis & Shirtliff",
+    ],
 
     // add more here as you go — e.g. plumbing: ["...", "..."], electrical: ["...", "..."]
   };
