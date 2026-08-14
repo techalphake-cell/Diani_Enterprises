@@ -97,7 +97,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.classList.add("product-card");
         card.dataset.category = product.category;
+        if (product.isInfoCard) {
+          card.classList.add("product-card", "info-card");
+          card.innerHTML = `
+            <div class="info-card-content">
+              <div class="info-card-icon">🔧</div>
+              <h3>${product.title}</h3>
+              <p>${product.description}</p>
+              <a href="https://wa.me/254759186527?text=${encodeURIComponent(product.whatsappMessage)}" class="btn-whatsapp info-card-cta" target="_blank">
+                ${product.cta}
+              </a>
+            </div>
+          `;
+          productsGrid.appendChild(card);
+          return; // skip the rest — no size dropdown, no enquire button wiring needed
+        }
 
+        card.classList.add("product-card");
         // Build the size control — dropdown for multiple sizes, plain text for one, nothing for none
         let sizeHTML = "";
         if (product.sizes && product.sizes.length > 1) {

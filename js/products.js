@@ -400,6 +400,17 @@ const products = [
 
   // ===== PLUMBING =====
   {
+    isInfoCard: true,
+    category: "plumbing",
+    title: "Complete Fittings Range",
+    description:
+      "We stock the full range of PPR & PVC fittings — elbows, tees, unions, reducers, adapters and more, in every standard size.",
+    cta: "Ask About Fittings on WhatsApp",
+    whatsappMessage:
+      "Hello, I'm looking for a specific plumbing fitting. Can you help me find what I need?",
+  },
+
+  {
     name: "Angle valve",
     category: "plumbing",
     description: "1/2 inch Miran",
