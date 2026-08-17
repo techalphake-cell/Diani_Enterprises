@@ -588,14 +588,14 @@ const products = [
     name: "Water Pump",
     category: "plumbing",
     description: "Surface water pumps",
-    sizes: [],
+    sizes: ["0.5hp", "0.75hp", "1hp"],
     alt: "water pump image",
   },
   {
     name: "Submersible pump",
     category: "plumbing",
     description: "Submersible well pump",
-    sizes: [],
+    sizes: ["0.5hp", "0.75hp", "1hp"],
     alt: "Submersible pump image",
   },
   {
@@ -607,23 +607,245 @@ const products = [
 
   // ===== ELECTRICAL =====
   {
+    isInfoCard: true,
+    category: "electrical",
+    title: "Complete Fittings Range",
+    description:
+      "We stock the full range of Conduit pipes and fitting — conduit bends, couplers, junction boxes, switch boxes and more, in every standard size.",
+    cta: "Ask About conduit pipes and fittings on WhatsApp",
+    whatsappMessage:
+      "Hello, I'm looking for a specific electrical fitting. Can you help me find what I need?",
+  },
+  {
     name: "Flood Light (LED)",
     category: "electrical",
-    description: "70W outdoor floodlight",
+    description: "1P65 Outdoor flood lights ",
+    sizes: ["10W", "20W", "30W", "50W"],
     alt: "LED flood light image",
   },
   {
-    name: "Consumer Unit",
+    name: "Flood Light with  sensor (LED)",
     category: "electrical",
-    description: "6-way distribution board",
-    alt: "Consumer unit image",
+    description: "Motion/day and night sensor flood light",
+    sizes: ["10W", "20W", "30W", "50W"],
+    alt: "LED flood light image",
+  },
+  {
+    name: " Solar Flood Light (LED)",
+    category: "electrical",
+    description: "Solar Powered with panel + remote, IP65",
+    sizes: ["100W", "200W", "300W"],
+    alt: "LED flood light image",
+  },
+  {
+    name: " Solar Street Light (LED)",
+    category: "electrical",
+    description: "Solar Powered with Mounting Post + remote, IP65",
+    sizes: ["100W", "200W", "300W"],
+    alt: "LED flood light image",
+  },
+  {
+    name: " Bulkhead (LED)",
+    category: "electrical",
+    description: "led wall/ceiling mounted light, IP65",
+    sizes: ["12W", "24W"],
+    alt: "LED flood light image",
+  },
+  {
+    name: " Bulkhead Fitting",
+    category: "electrical",
+    description: "wall mounted outdoor fitting, IP65",
+    alt: "Bulk head fitting  image",
   },
   {
     name: "LED Bulb",
     category: "electrical",
-    description: "5W, E27 / B22 fitting",
+    description: "E27 / B22 Opple Bulbs",
+    sizes: [
+      "5W-warm white",
+      "7W-warm white",
+      "9W-warm white",
+      "5W-Day light",
+      "7W-Day light",
+      "9W-Day light",
+    ],
     alt: "LED bulb image",
   },
+  {
+    name: "Tube Light (LED)",
+    category: "electrical",
+    description: "LED tubelight",
+    sizes: ["4FT", "2FT"],
+    alt: "LED tube light image",
+  },
+  {
+    name: "Motion Sensor",
+    category: "electrical",
+    description: "High precision Motion Sensor",
+    alt: "Motion Sensor image",
+  },
+  {
+    name: "Photo Cell",
+    category: "electrical",
+    description: "Light Sensor",
+    alt: "Photo cell image",
+  },
+  {
+    name: "Adaptable Boxes",
+    category: "electrical",
+    description: "White Ip boxes",
+    sizes: [
+      "85x85x50mm",
+      "100mmx100mmx70mm",
+      "150mmx150mmx70mm",
+      "200mmx200mmx80mm",
+      "200mmx155mmx80mm",
+      "300mmx250mmx120mm",
+      "400mmx350mmx120mm",
+    ],
+    alt: "Adapter box image",
+  },
+  {
+    name: "Ceiling Fan",
+    category: "electrical",
+    description: "56inch blades-Orient white",
+    alt: "Ceiling fan Orient image",
+  },
+  {
+    name: "Wall Fan",
+    category: "electrical",
+    description: "16 inch + remote",
+    alt: "wall fan image",
+  },
+
+  {
+    name: "Door bell",
+    category: "electrical",
+    description: "wireless door bell",
+    alt: "Wireless Door bell ",
+  },
+  {
+    name: "Door bell",
+    category: "electrical",
+    description: "Door bell Tronic, wired",
+    alt: "Wired Door bell ",
+  },
+  {
+    name: "Bell switch",
+    category: "electrical",
+    description: "1 gang bell switch",
+    alt: "Wireless Door bell ",
+  },
+  {
+    name: "Meter Box",
+    category: "electrical",
+    description: "Metallic Meter box",
+    sizes: ["", ""],
+    alt: "Consumer unit image",
+  },
+
+  {
+    name: "Consumer Unit",
+    category: "electrical",
+    description: "Electric distribution board",
+    sizes: ["4-way", "6-way", "9-way", "12-way"],
+    alt: "Consumer unit image",
+  },
+  {
+    name: "Miniature Circuit Breakers(MCB)",
+    category: "electrical",
+    description: " Single pole MCB",
+    sizes: ["6A", "10A", "16A", "20A", "32A", "40A"],
+    alt: "MCB  image",
+  },
+  {
+    name: "Miniature Circuit Breakers(MCB)",
+    category: "electrical",
+    description: " Double pole MCB",
+    sizes: ["32A", "63A", "100A"],
+    alt: "Dp Mcb image image",
+  },
+  {
+    name: "Switches",
+    category: "electrical",
+    description: " Electrical Switches",
+    sizes: ["1 gang", "1G2W", "2G2W", "3G2W", "4G2W"],
+    alt: "switches  image",
+  },
+
+  {
+    name: " DP Switch",
+    category: "electrical",
+    description: " Dp Switch",
+    sizes: ["20A", "45A"],
+    alt: "Dp Switch image",
+  },
+  {
+    name: "Change over Switch",
+    category: "electrical",
+    description: "Manual Change over switch Tronic",
+    sizes: ["40A", "80A"],
+    alt: "Change over  image",
+  },
+
+  {
+    name: "Sockets 15A",
+    category: "electrical",
+    description: " 15A socket",
+    sizes: ["Single socket"],
+    alt: "13 A sockets image",
+  },
+
+  {
+    name: " Waterproof Switche",
+    category: "electrical",
+    description: " Outdoor Electrical Switches(Waterproof Ip65)",
+    sizes: ["1G2W", "2G2W", "3G2W", "4G2W"],
+    alt: "w/proof switches image",
+  },
+  {
+    name: " Waterproof Sockets 13A",
+    category: "electrical",
+    description: " 13A W/proof sockets",
+    sizes: ["Single socket", "Twin Socket"],
+    alt: "13 A w/p sockets image",
+  },
+
+  {
+    name: "Cut out",
+    category: "electrical",
+    description: "Fused cut outs",
+    sizes: ["Single 100A", "Double 100A"],
+    alt: "13 A sockets image",
+  },
+  {
+    name: "Flex Cable",
+    category: "electrical",
+    description: "Metsec Flex Cable",
+    sizes: [
+      "0.5MM 2 core",
+      "0.75  2 core",
+      "1MM  3 core,",
+      "1.5MM  3 core",
+      "2.5MM  3 core",
+    ],
+    alt: "Flex cable image",
+  },
+  {
+    name: "Twin With Earth Cable",
+    category: "electrical",
+    description: "Metsec TWE Cable, grey",
+    sizes: ["1.5MM", "2.5MM", "4MM", "6MM", "10MM"],
+    alt: "Twe image",
+  },
+  {
+    name: "Single Core Cable",
+    category: "electrical",
+    description: "Coast cable Red,Yellow,Black",
+    sizes: ["1.5MM", "2.5MM", "4MM", "6MM", "10MM"],
+    alt: "Twe image",
+  },
+
   {
     name: "Cable Clip",
     category: "electrical",
@@ -642,12 +864,7 @@ const products = [
     description: "2uF - 10uF motor capacitor",
     alt: "Capacitor image",
   },
-  {
-    name: "Tube Light (LED)",
-    category: "electrical",
-    description: "4ft LED tube",
-    alt: "LED tube light image",
-  },
+
   {
     name: "Lamp Holder",
     category: "electrical",
@@ -681,20 +898,32 @@ const products = [
   {
     name: "Trunking",
     category: "electrical",
-    description: "25x16mm cable trunking",
+    description: "cable trunking 3mtr",
+    sizes: ["25x16mm", "40x25mm", "50x50mm", "75x50mm", "100x50mm"],
+
     alt: "Trunking image",
   },
-  {
-    name: "Switch (Lisse)",
-    category: "electrical",
-    description: "1-2 gang wall switch",
-    alt: "Wall switch image",
-  },
+
   {
     name: "Down Light (LED)",
     category: "electrical",
     description: "6W recessed downlight",
+    sizes: [
+      "6W-Round",
+      "9W-Round",
+      "12W-Round",
+      "6W-Square",
+      "9W-Square",
+      "12W-Square",
+    ],
     alt: "LED down light image",
+  },
+  {
+    name: "Panel Light(LED)",
+    category: "electrical",
+    description: "Surface Mounted Panel light",
+    sizes: ["6W-Round", "9W-Round", "12W-Round", "6W-Square", "12W-Square"],
+    alt: "LED panel light image",
   },
 
   // ===== SANITARY WARE =====

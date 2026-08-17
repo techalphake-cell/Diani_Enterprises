@@ -75,6 +75,15 @@ document.addEventListener("DOMContentLoaded", () => {
       "Pedrollo",
       "Davis & Shirtliff",
     ],
+    electrical: [
+      "Tronic",
+      "Schneider",
+      "Chint",
+      "Windsor",
+      "Carl & Gilberts",
+      "Surya",
+      "Kings",
+    ],
 
     // add more here as you go — e.g. plumbing: ["...", "..."], electrical: ["...", "..."]
   };
