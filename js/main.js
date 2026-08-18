@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .join("");
           sizeHTML = `
             <div class="size-group">
-              <label>Size:</label>
+              <label>Size/Model:</label>
               <select class="size-select">${options}</select>
             </div>
           `;
