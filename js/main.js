@@ -84,6 +84,17 @@ document.addEventListener("DOMContentLoaded", () => {
       "Surya",
       "Kings",
     ],
+    "sanitary-ware": ["Miran", "Techplas", "Lirlee", "MIBT", "Valdeno"],
+    "hardware-general": [
+      " Union",
+      "Oxford",
+      "Euro",
+      "Yale",
+      "Solex",
+      "Yeti",
+      "Assa Abloy",
+      "Guli",
+    ],
 
     // add more here as you go — e.g. plumbing: ["...", "..."], electrical: ["...", "..."]
   };
