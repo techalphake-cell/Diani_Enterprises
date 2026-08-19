@@ -480,7 +480,7 @@ textarea {
   border: 1px solid var(--forest);
 }
 
-.paint-subfilter {
+.subfilter-bar {
   display: none;
   justify-content: center;
   flex-wrap: wrap;
@@ -488,7 +488,7 @@ textarea {
   margin-bottom: var(--space-5);
 }
 
-.paint-subfilter button {
+.subfilter-bar button {
   padding: var(--space-1) var(--space-3);
   border: 1px solid var(--mist);
   border-radius: var(--radius-md);
@@ -500,20 +500,32 @@ textarea {
   transition: var(--transition);
 }
 
-.paint-subfilter button:hover {
+.subfilter-bar button:hover {
   border-color: var(--amber);
   color: var(--amber);
 }
 
-.paint-subfilter button.active {
+.subfilter-bar button.active {
   background-color: var(--amber);
   color: var(--white);
   border-color: var(--amber);
 }
 
-.paint-subfilter.visible {
+.subfilter-bar.visible {
   display: flex;
 }
+.products-footer-note {
+  text-align: center;
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--mist);
+}
+
+.products-footer-note p {
+  color: var(--slate);
+  margin-bottom: var(--space-2);
+}
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

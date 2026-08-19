@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===== PRODUCTS RENDERING =====
+  // ===== PRODUCTS SETUP =====
   const productsGrid = document.querySelector(".products-grid");
 
   const categoryLabels = {
@@ -55,6 +55,67 @@ document.addEventListener("DOMContentLoaded", () => {
     "paint-plascon": "Plascon Paint",
   };
 
+  // Sub-filter options per main category — add more as you curate each one
+  const categorySubtypes = {
+    paint: [
+      { value: "all", label: "All Paint" },
+      { value: "interior", label: "Interior" },
+      { value: "exterior", label: "Exterior" },
+      { value: "wood", label: "Wood Finishes" },
+      { value: "marine", label: "Marine" },
+      { value: "specialized", label: "Specialized" },
+    ],
+    tools: [
+      { value: "all", label: "All Tools" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+    ],
+    building: [
+      { value: "all", label: "All Products" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+    ],
+    plumbing: [
+      { value: "all", label: "All Products" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+    ],
+    electrical: [
+      { value: "all", label: "All Products" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+    ],
+    "sanitary-ware": [
+      { value: "all", label: "All Products" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+    ],
+    "hardware-general": [
+      { value: "all", label: "All Products" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+      { value: "", label: "" },
+    ],
+  };
+
+  // Brand banner per main category — add more as you curate each one
   const categoryBrandsList = {
     tools: [
       "Bosch",
@@ -66,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "Makita",
     ],
     paint: ["Crown", "Duracoat", "Basco", "Plascon"],
-    building: ["Doshi", "Tarmal ", "Bamburi", "Duracoat", "Dumuzaz", "Nyumba"],
+    building: ["Doshi", "Tarmal", "Bamburi", "Duracoat", "Dumuzaz", "Nyumba"],
     plumbing: [
       "Plumber",
       "Miran",
@@ -86,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
     "sanitary-ware": ["Miran", "Techplas", "Lirlee", "MIBT", "Valdeno"],
     "hardware-general": [
-      " Union",
+      "Union",
       "Oxford",
       "Euro",
       "Yale",
@@ -95,11 +156,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "Assa Abloy",
       "Guli",
     ],
-
-    // add more here as you go — e.g. plumbing: ["...", "..."], electrical: ["...", "..."]
   };
 
-  function renderProducts(filter = "all", paintType = "all") {
+  // ===== RENDER PRODUCTS =====
+  function renderProducts(filter = "all", subtype = "all") {
     if (!productsGrid) return;
 
     productsGrid.innerHTML = "";
@@ -110,13 +170,13 @@ document.addEventListener("DOMContentLoaded", () => {
         product.category === filter ||
         (filter === "paint" && product.category.startsWith("paint-"));
 
-      const typeMatch =
-        filter !== "paint" || paintType === "all" || product.type === paintType;
+      const typeMatch = subtype === "all" || product.type === subtype;
 
       if (categoryMatch && typeMatch) {
         const card = document.createElement("div");
-        card.classList.add("product-card");
         card.dataset.category = product.category;
+
+        // Special case — promo/info card, not a real product
         if (product.isInfoCard) {
           card.classList.add("product-card", "info-card");
           card.innerHTML = `
@@ -130,11 +190,11 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           `;
           productsGrid.appendChild(card);
-          return; // skip the rest — no size dropdown, no enquire button wiring needed
+          return;
         }
 
         card.classList.add("product-card");
-        // Build the size control — dropdown for multiple sizes, plain text for one, nothing for none
+
         let sizeHTML = "";
         if (product.sizes && product.sizes.length > 1) {
           const options = product.sizes
@@ -142,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .join("");
           sizeHTML = `
             <div class="size-group">
-              <label>Size/Model:</label>
+              <label>Size:</label>
               <select class="size-select">${options}</select>
             </div>
           `;
@@ -158,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="product-category">${categoryLabels[product.category] || product.category}</span>
             <h3>${product.name}</h3>
             <p>${product.description}</p>
-           
             ${sizeHTML}
             <div class="card-actions">
               <button class="btn-primary enquire-btn">Enquire Now</button>
@@ -167,8 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
 
-        // Wire up this card's buttons individually, since they need
-        // to read THIS card's size dropdown at click time
         const enquireBtn = card.querySelector(".enquire-btn");
         const whatsappBtn = card.querySelector(".btn-whatsapp");
         const sizeSelect = card.querySelector(".size-select");
@@ -195,13 +252,15 @@ document.addEventListener("DOMContentLoaded", () => {
           const message = encodeURIComponent(
             `Hello, I would like to order: ${getMessage()}`,
           );
-          window.open(`https://wa.me/254735244889?text=${message}`, "_blank");
+          window.open(`https://wa.me/254759186527?text=${message}`, "_blank");
         });
 
         productsGrid.appendChild(card);
       }
     });
   }
+
+  // ===== BRANDS BANNER =====
   const brandsBanner = document.querySelector("#brands-banner");
   const brandsTrack = document.querySelector("#brands-track");
 
@@ -218,14 +277,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const items = brands
       .map((b) => `<span class="brand-item">${b}</span>`)
       .join("");
-    brandsTrack.innerHTML = items + items; // duplicated for the seamless scroll
+    brandsTrack.innerHTML = items + items;
     brandsBanner.classList.add("visible");
   }
 
-  // ===== FILTER BUTTONS =====
+  // ===== GENERIC SUB-FILTER BAR =====
+  const subfilterBar = document.querySelector("#subfilter-bar");
+
+  function renderSubfilter(category) {
+    if (!subfilterBar) return;
+
+    const subtypes = categorySubtypes[category];
+
+    if (!subtypes) {
+      subfilterBar.classList.remove("visible");
+      subfilterBar.innerHTML = "";
+      return;
+    }
+
+    subfilterBar.innerHTML = subtypes
+      .map(
+        (sub, index) =>
+          `<button data-type="${sub.value}" class="${index === 0 ? "active" : ""}">${sub.label}</button>`,
+      )
+      .join("");
+
+    subfilterBar.classList.add("visible");
+
+    const subButtons = subfilterBar.querySelectorAll("button");
+    subButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        subButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderProducts(category, btn.dataset.type);
+      });
+    });
+  }
+
+  // ===== MAIN FILTER BUTTONS =====
   const filterButtons = document.querySelectorAll(".filter-bar button");
-  const paintSubfilter = document.querySelector("#paint-subfilter");
-  const paintSubButtons = document.querySelectorAll(".paint-subfilter button");
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -234,45 +324,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const category = button.dataset.category;
       updateBrandsBanner(category);
-
-      if (category === "paint") {
-        if (paintSubfilter) paintSubfilter.classList.add("visible");
-        paintSubButtons.forEach((btn) => btn.classList.remove("active"));
-        if (paintSubButtons[0]) paintSubButtons[0].classList.add("active");
-        renderProducts("paint", "all");
-      } else {
-        if (paintSubfilter) paintSubfilter.classList.remove("visible");
-        renderProducts(category);
-      }
+      renderSubfilter(category);
+      renderProducts(category, "all");
     });
   });
-
-  // ===== PAINT SUB-FILTER BUTTONS =====
-  if (paintSubButtons.length > 0) {
-    paintSubButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        paintSubButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        renderProducts("paint", btn.dataset.type);
-      });
-    });
-  }
 
   // ===== CHECK URL FOR CATEGORY PARAMETER =====
   const params = new URLSearchParams(window.location.search);
   const urlCategory = params.get("category");
 
   if (urlCategory) {
-    renderProducts(urlCategory);
     updateBrandsBanner(urlCategory);
+    renderSubfilter(urlCategory);
+    renderProducts(urlCategory, "all");
     filterButtons.forEach((btn) => {
       if (btn.dataset.category === urlCategory) {
         btn.classList.add("active");
       }
     });
-    if (urlCategory === "paint" && paintSubfilter) {
-      paintSubfilter.classList.add("visible");
-    }
   } else {
     renderProducts();
   }
