@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="info-card-icon">🔧</div>
               <h3>${product.title}</h3>
               <p>${product.description}</p>
-              <a href="https://wa.me/254759186527?text=${encodeURIComponent(product.whatsappMessage)}" class="btn-whatsapp info-card-cta" target="_blank">
+              <a href="https://wa.me/254735244889?text=${encodeURIComponent(product.whatsappMessage)}" class="btn-whatsapp info-card-cta" target="_blank">
                 ${product.cta}
               </a>
             </div>
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const message = encodeURIComponent(
             `Hello, I would like to order: ${getMessage()}`,
           );
-          window.open(`https://wa.me/254759186527?text=${message}`, "_blank");
+          window.open(`https://wa.me/254735244889?text=${message}`, "_blank");
         });
 
         productsGrid.appendChild(card);

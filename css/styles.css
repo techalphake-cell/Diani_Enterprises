@@ -1051,4 +1051,7 @@ textarea:focus {
   .products-grid {
     grid-template-columns: 1fr;
   }
+  .info-card {
+    grid-column: span 1; /* ← add this line */
+  }
 }
